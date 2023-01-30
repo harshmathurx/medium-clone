@@ -22,38 +22,38 @@ const styles = {
 const PostCard = ({ post }) => {
 
     return (
-        // <Link href={`/post/${post.id}`}>
-        <div className={styles.wrapper}>
-            <div className={styles.postDetails}>
-                <div className={styles.authorContainer}>
-                    <div className={styles.authorImageContainer}>
-                        <Image src={Logo} className={styles.authorImage} />
+        <Link href={`/post/123`}>
+            <div className={styles.wrapper}>
+                <div className={styles.postDetails}>
+                    <div className={styles.authorContainer}>
+                        <div className={styles.authorImageContainer}>
+                            <Image src={Logo} className={styles.authorImage} />
+                        </div>
+
+                        <div className={styles.authorName}>Author Name</div>
                     </div>
 
-                    <div className={styles.authorName}>Author Name</div>
+                    <h1 className={styles.title}>7 Free Tools</h1>
+                    <div className={styles.briefing}>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quae ad laudantium temporibus  </div>
+                    <div className={styles.detailsContainer}>
+                        <span className={styles.articleDetails}>
+
+                        </span>
+                        <span className={styles.bookmarkContainer}>
+                            <FiBookmark className='h-5 w-5' />
+                        </span>
+                    </div>
                 </div>
 
-                <h1 className={styles.title}>7 Free Tools</h1>
-                <div className={styles.briefing}>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quae ad laudantium temporibus  </div>
-                <div className={styles.detailsContainer}>
-                    <span className={styles.articleDetails}>
-
-                    </span>
-                    <span className={styles.bookmarkContainer}>
-                        <FiBookmark className='h-5 w-5' />
-                    </span>
+                <div className={styles.thumbnailContainer}>
+                    <Image
+                        height={100}
+                        width={100}
+                        src={Logo}
+                    />
                 </div>
             </div>
-
-            <div className={styles.thumbnailContainer}>
-                <Image
-                    height={100}
-                    width={100}
-                    src={Logo}
-                />
-            </div>
-        </div>
-        // </Link>
+        </Link>
     )
 }
 
