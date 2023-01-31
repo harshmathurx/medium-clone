@@ -8,6 +8,8 @@ import { HiOutlineLink } from 'react-icons/hi'
 import { BiBookmarks } from 'react-icons/bi'
 import { FiMoreHorizontal } from 'react-icons/fi'
 import Banner from './../static/banner.png'
+import { useContext, useEffect, useState } from "react"
+import { MediumContext } from "../context/MediumContext"
 
 const styles = {
     wrapper: `flex items-center justify-center flex-[3] border-l border-r`,
@@ -28,7 +30,23 @@ const styles = {
     articleText: `font-mediumSerif text-[1.4rem] text-[#292929]`,
 }
 
-const ArticleMain = ({ }) => {
+const ArticleMain = ({postId}) => {
+    const { posts, users } = useContext(MediumContext)
+    const [post, setPost] = useState([])
+    const [author, setAuthor] = useState([])
+
+    useEffect(() => {
+        // guard clause
+        if (posts.length === 0 || users.length === 0) {
+            return
+        }
+
+        setPost(posts.find(post => post.id === postId))
+
+        setAuthor(users.find(user => user.id === post.data?.author))
+
+    }, [post,author,posts,users,postId])
+
     return (
         <div className={styles.wrapper}>
             <div className={styles.content}>
@@ -43,9 +61,9 @@ const ArticleMain = ({ }) => {
                             />
                         </div>
                         <div className={styles.column}>
-                            <div>Harsh Mathur</div>
-                            <div className={styles.postDetails}>
-                                <span> 23rd January 2023 • 3 mins min read • </span><span className={styles.listenButton}>
+                            <div>{author?.data?.name}</div>
+                            <div className={styles.postDetails}> 
+                                <span> {new Date(post?.data?.postedOn?.seconds).toLocaleString('en-US', { month: 'short', day: 'numeric' })} • {post?.data?.postLength} min read • </span><span className={styles.listenButton}>
                                     <AiFillPlayCircle /> Listen
                                 </span>
                             </div>
@@ -70,20 +88,9 @@ const ArticleMain = ({ }) => {
                             width={100}
                         />
                     </div>
-                    <h1 className={styles.title}>Article Title
+                    <h1 className={styles.title}>{post?.data?.title}
                     </h1>
-                    <h4 className={styles.subtitle}>
-                        <div>
-                            Harsh Mathur,{' '}
-                            {/* {new Date(post.data?.postedOn).toLocaleString('en-US', {
-                                day: 'numeric',
-                                month: 'short',
-                                year: 'numeric'
-                            })} */}
-                        </div>
-                        {/* <div>{post?.data?.brief}</div> */}
-                    </h4>
-                    <div className={styles.articleText}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit fugit adipisci rem. Vero iure tenetur cum eos, deserunt obcaecati neque consequatur ex vitae, voluptatibus ratione voluptates aliquid ab consequuntur? Vero reprehenderit asperiores eligendi sed perspiciatis numquam perferendis delectus impedit nesciunt rerum alias officia, totam iusto, et quas voluptates a nemo quos minus. Dolorem reiciendis iusto ipsam, delectus molestiae commodi labore non eligendi voluptatum quaerat tenetur magnam a velit, atque animi. Vero mollitia eveniet repellendus aliquam deserunt! Suscipit quos odio labore maiores deleniti nobis nulla pariatur tempore dolorum totam magni nemo, corrupti rerum quas earum eaque tenetur quis porro accusamus quod.  </div>
+                    <div className={styles.articleText}>{post?.data?.body}</div>
                 </div>
             </div>
         </div>

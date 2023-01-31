@@ -2,6 +2,9 @@ import Image from 'next/image'
 import Logo from '../static/logo.png'
 import { FiBookmark } from 'react-icons/fi'
 import Link from 'next/link'
+import { useEffect, useState } from 'react'
+import { doc, getDoc } from 'firebase/firestore'
+import { db } from '../firebase'
 
 const styles = {
     wrapper: `flex max-w-[46rem] h-[10rem] items-center gap-[1rem] cursor-pointer`,
@@ -21,23 +24,30 @@ const styles = {
 
 const PostCard = ({ post }) => {
 
+    const [authorData, setAuthorData] = useState({});
+    useEffect(() => {
+        const getAuthorData = async () => {
+            setAuthorData((await getDoc(doc(db, 'users', post.data.author))).data())
+        }
+        getAuthorData();
+    }, [])
+    
     return (
-        <Link href={`/post/123`}>
+        <Link href={`/post/${post.id}`}>
             <div className={styles.wrapper}>
                 <div className={styles.postDetails}>
                     <div className={styles.authorContainer}>
                         <div className={styles.authorImageContainer}>
-                            <Image src={Logo} className={styles.authorImage} />
+                            <Image src={`https://res.cloudinary.com/demo/image/fetch/${authorData?.imageUrl}`} width={40} height={40} className={styles.authorImage} />
                         </div>
-
-                        <div className={styles.authorName}>Author Name</div>
+                        <div className={styles.authorName}>{authorData?.name}</div>
                     </div>
 
-                    <h1 className={styles.title}>7 Free Tools</h1>
-                    <div className={styles.briefing}>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quae ad laudantium temporibus  </div>
+                    <h1 className={styles.title}>{post.data.title}</h1>
+                    <div className={styles.briefing}>{post.data.brief}</div>
                     <div className={styles.detailsContainer}>
                         <span className={styles.articleDetails}>
-
+                            {new Date(post.data.postedOn.seconds).toLocaleString('en-US', { month: 'short', day: 'numeric' })}  • {post.data.postLength} min read • <span className={styles.category}>{post.data.category}</span>
                         </span>
                         <span className={styles.bookmarkContainer}>
                             <FiBookmark className='h-5 w-5' />
@@ -49,7 +59,7 @@ const PostCard = ({ post }) => {
                     <Image
                         height={100}
                         width={100}
-                        src={Logo}
+                        src={`https://res.cloudinary.com/demo/image/fetch/${post.data.bannerImage}`}
                     />
                 </div>
             </div>
