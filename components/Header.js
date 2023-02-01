@@ -3,7 +3,7 @@ import { useContext } from "react"
 import { MediumContext } from "../context/MediumContext"
 import Logo from '../static/logo.png'
 import Modal from 'react-modal'
-import { Router, useRouter } from "next/router"
+import { useRouter } from "next/router"
 import PostModal from "./PostModal"
 import Link from "next/link"
 const styles = {
