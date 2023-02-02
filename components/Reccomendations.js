@@ -28,7 +28,7 @@ const styles = {
   articleContent: `flex-[4]`,
 }
 
-const Recommendations = ({ author }) => {
+const Recommendations = ({ }) => {
   return (
     <div className={styles.wrapper}>
       <div className={styles.accentedButton}>Get unlimited access</div>
@@ -45,6 +45,7 @@ const Recommendations = ({ author }) => {
         <div className={styles.authorProfileImageContainer}>
           <Image
             src={Qazi}
+            alt='author image'
             width={100}
             height={100}
           />
@@ -60,27 +61,26 @@ const Recommendations = ({ author }) => {
       <div className={styles.recommendationContainer}>
         <div className={styles.title}>More from Medium</div>
         <div className={styles.articlesContainer}>
-
           {recommendedPosts.map(post => (
-          <div key={post.key} className={styles.articleContentWrapper}>
-            <div className={styles.articleContent}>
+            <div key={post.key} className={styles.articleContentWrapper}>
+              <div className={styles.articleContent}>
 
-              <div className={styles.recommendationAuthorContainer}>
-                <div className={styles.recommendationAuthorProfileImageContainer}>
-                  <Image src={post.author.image} height={100} width={100} />
+                <div className={styles.recommendationAuthorContainer}>
+                  <div className={styles.recommendationAuthorProfileImageContainer}>
+                    <Image src={post.author.image} alt="author image" height={100} width={100} />
+                  </div>
+                  <div className={styles.recommendationAuthorName}>{post.author.name}</div>
                 </div>
-                <div className={styles.recommendationAuthorName}>{post.author.name}</div>
-              </div>
-              <div className={styles.recommendationTitle}>{post.title}</div>
+                <div className={styles.recommendationTitle}>{post.title}</div>
 
+              </div>
+              <div className={styles.recommendationThumbnailContainer}>
+                <Image
+                  className={styles.recommendationThumbnail}
+                  src={post.image} alt="reccomender image" height={100} width={100} />
+              </div>
             </div>
-            <div className={styles.recommendationThumbnailContainer}>
-              <Image
-                className={styles.recommendationThumbnail}
-                src={post.image} height={100} width={100} />
-            </div>
-          </div>
-      ))}
+          ))}
         </div>
       </div>
     </div>
@@ -99,21 +99,21 @@ const recommendedPosts = [
       image: CPLogo
     }
   },
- {
+  {
     title: 'The Ultimate JavaScript Course for Beginners by Clever Programmer',
     image: TutorialImg,
     author: {
-      name: 'Rafeh Qazi',
+      name: 'Harsh Mathur',
       image: Qazi
     }
   },
-   {
+  {
     title: 'How to Become a Developer in 2022?',
     image: JSLogo,
     author: {
-      name: 'Clever Programmer',
+      name: 'Angela Wilkins',
       image: CPLogo
     }
   },
-  
+
 ]

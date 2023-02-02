@@ -28,8 +28,7 @@ const styles = {
     articleText: `font-mediumSerif text-[1.4rem] text-[#292929]`,
 }
 
-const ArticleMain = ({post,author}) => {
-    console.log(post)
+const ArticleMain = ({ post, author }) => {
     return (
         <div className={styles.wrapper}>
             <div className={styles.content}>
@@ -37,15 +36,16 @@ const ArticleMain = ({post,author}) => {
                     <div className={styles.authorContainer}>
                         <div className={styles.authorProfileImageContainer}>
                             <Image
-                                className={`object-cover`} 
-                                src={Qazi}
+                                className={`object-cover`}
+                                alt={author?.name}
+                                src={`https://res.cloudinary.com/demo/image/fetch/${author?.imageUrl}`}
                                 width={100}
                                 height={100}
                             />
                         </div>
                         <div className={styles.column}>
                             <div>{author?.name}</div>
-                            <div className={styles.postDetails}> 
+                            <div className={styles.postDetails}>
                                 <span> {new Date(post?.postedOn?.seconds).toLocaleString('en-US', { month: 'short', day: 'numeric' })} • {post?.data?.postLength} min read • </span><span className={styles.listenButton}>
                                     <AiFillPlayCircle /> Listen
                                 </span>

@@ -1,4 +1,5 @@
 import { collection, getDocs } from 'firebase/firestore';
+import Head from 'next/head';
 import Banner from '../components/Banner'
 import Header from '../components/Header'
 import PostCard from '../components/PostCard'
@@ -35,7 +36,7 @@ export async function getServerSideProps() {
   return {
     props: {
       posts
-     }
+    }
   }
 }
 
@@ -43,6 +44,14 @@ export default function Home({ posts }) {
 
   return (
     <>
+      <Head>
+        <title>Medium Clone by Harsh Mathur</title>
+        <meta name="description" content="follow me @harshmathurx" />
+        <meta property="og:title" content="Medium Clone by Harsh Mathur" />
+        <meta property="og:description" content="follow me @harshmathurx" />
+        <meta property="og:url" content="https://medium-clone-harsh.vercel.app/" />
+        <meta property="og:type" content="website" />
+      </Head>
       <div className={styles.wrapper}>
         <Header />
         <Banner />
