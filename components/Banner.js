@@ -14,7 +14,7 @@ const Banner = () => {
         <div className='space-y-5 px-10 flex-[3]'>
           <h1 className='max-w-xl text-[6rem] font-mediumSerif'>Stay Curious.</h1>
 
-          <h3 className='text-2xl'>Discover stories, thinking, and expertise from writers on any topic.</h3>
+          <h2 className='text-2xl'>Discover stories, thinking, and expertise from writers on any topic.</h2>
 
           <button className={`${styles.accentedButton}`}>Start Reading</button>
         </div>

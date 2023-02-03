@@ -69,6 +69,7 @@ const ArticleMain = ({ post, author }) => {
                             src={Banner}
                             height={100}
                             width={100}
+                            alt={post?.title}
                         />
                     </div>
                     <h1 className={styles.title}>{post?.title}

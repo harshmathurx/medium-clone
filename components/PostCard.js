@@ -31,14 +31,14 @@ const PostCard = ({ post }) => {
         }
         getAuthorData();
     }, [])
-    
+
     return (
         <Link href={`/post/${post.id}`}>
             <div className={styles.wrapper}>
                 <div className={styles.postDetails}>
                     <div className={styles.authorContainer}>
                         <div className={styles.authorImageContainer}>
-                            <Image src={`https://res.cloudinary.com/demo/image/fetch/${authorData?.imageUrl}`} width={40} height={40} className={styles.authorImage} />
+                            <Image src={`https://res.cloudinary.com/demo/image/fetch/${authorData?.imageUrl}`} width={40} height={40} alt={authorData?.name} className={styles.authorImage} />
                         </div>
                         <div className={styles.authorName}>{authorData?.name}</div>
                     </div>
@@ -59,6 +59,8 @@ const PostCard = ({ post }) => {
                     <Image
                         height={100}
                         width={100}
+                        alt={post.data.title}
+                        title={post.data.title}
                         src={`https://res.cloudinary.com/demo/image/fetch/${post.data.bannerImage}`}
                     />
                 </div>

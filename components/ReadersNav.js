@@ -22,7 +22,7 @@ const ReadersNav = () => {
     <div className={styles.wrapper}>
       <Link href='/'>
         <div className={styles.logoContainer}>
-          <Image src={SmallLogo} />
+          <Image src={SmallLogo} alt="Medium by Harsh Mathur"/>
         </div>
       </Link>
       <div className={styles.iconsContainer}>
